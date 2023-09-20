@@ -1,9 +1,10 @@
 import { useState } from "react";
-import InputBox from "./components/Inputbox";
+import InputBox from "./components/InputBox"; // Corrected the import path
 import "./index.css";
 import useCurrencyInfo from "./hooks/useCurrencyInfo";
+
 function App() {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
   const [from, setFrom] = useState("usd");
   const [to, setTo] = useState("inr");
   const [convertedAmount, setConvertedAmount] = useState(0);
@@ -11,14 +12,18 @@ function App() {
   const options = Object.keys(currencyInfo);
 
   const swap = () => {
+    // Swap 'from' and 'to' currencies, and update 'amount' and 'convertedAmount'
     setFrom(to);
     setTo(from);
-    setConvertedAmount(amount);
     setAmount(convertedAmount);
+    setConvertedAmount(amount);
   };
+
   const convert = () => {
+    // Convert the 'amount' from 'from' currency to 'to' currency
     setConvertedAmount(amount * currencyInfo[to]);
   };
+
   return (
     <div
       className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
@@ -39,7 +44,7 @@ function App() {
                 label="From"
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setAmount(amount)}
+                onCurrencyChange={(currency) => setFrom(currency)} // Updated this line
                 selectCurrency={from}
                 onAmountChange={(amount) => setAmount(amount)}
               />
@@ -58,8 +63,8 @@ function App() {
                 label="To"
                 amount={convertedAmount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={from}
+                onCurrencyChange={(currency) => setTo(currency)} // Updated this line
+                selectCurrency={to} // Updated to 'to' currency
                 amountDisable
               />
             </div>
