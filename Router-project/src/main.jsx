@@ -12,6 +12,8 @@ import Layout from "./layout.jsx";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import Users from "./components/Users/Users";
+import Github from "./components/Github/Github";
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -40,6 +42,8 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="github" element={<Github />} />
+      <Route path="user/:id" element={<Users />} />
     </Route>
   )
 );
