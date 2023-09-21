@@ -1,7 +1,8 @@
+import Header from "./components/Headers/Headers";
 function App() {
   return (
     <>
-      <h2>Hello Router</h2>
+      <Header />
     </>
   );
 }
